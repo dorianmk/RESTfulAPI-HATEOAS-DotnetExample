@@ -43,10 +43,7 @@ builder.Services.AddScoped<IOneWayConverter<Book, BookDetailsDto>, BookDetailsCo
 builder.Services.AddScoped<IOneWayConverter<NewBookDto, Book>, NewBookConverter>();
 builder.Services.AddScoped<ILinksFactory, LinksFactory>();
 builder.Services.AddSqlite<BookContext>(connectionString);
-
-var config = new MapperConfiguration(mc => mc.AddProfile(new MappingProfiles()));
-IMapper mapper = config.CreateMapper();
-builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 var app = builder.Build();
 
